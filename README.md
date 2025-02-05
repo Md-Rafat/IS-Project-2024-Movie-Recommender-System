@@ -45,9 +45,11 @@ As it can be seen in the Top K Selector node (Top 30 strongest rules) output dat
 
 The KNIME workflow between the recommendation system based on K Nearest Neighbors (KNN) and the recommendation system based on Association Rule Learner has some similarities. I use the same dataset in the K Nearest Neighbor workflow and use the same year extraction technique as well as some Row Filter to remove the unwanted rows. Then, after using Joiner node and Missing Value node this time I use String to Number node to change the data type of the ‘Year’ column. Then I use Rule Engine node to specify some rules based on rating. In the Rule Engine node, I specify two rules with the help of given functions there. The rules are Ratings 0 - 2.5 = not recommended and Ratings 3 - 5 = recommended. In the Rule Engine node, I append the column Recommendation. I use Column Filter here as well to remove unnecessary columns like timestamp, imdbId etc. After that, I use Partitioning node to divide my data into training data and test data. I choose the size of my first partition or training data 80% and second partition or test data 20% and select Random sampling. Then, I drag K Nearest Neighbor node and connect it with the partitioning node. In the K Nearest Neighbor node, I select my class column = Recommendation, Number of neighbors = 25 and marked Weight neighbours by distance. In the last layer of my workflow I drag a new Joiner node and join the classified output data of K Nearest Neighbor node and Excel Reader node of movies.csv (with extracted year), the purpose of using this Joiner node is to bring the title column back in the output data table for better understanding of the recommendation system which I removed previously in the Column Filter node because using non numeric column in the K Nearest Neighbor is not possible. In addition, I use Column Filter and Column Resorter accordingly to remove unnecessary columns and resorting the columns. Finally, I use a Scorer node to determine the accuracy status, correct classified data or wrong classified data. In the configuration of Scorer node, I select Recommendation column as my first column and Class [KNN] column as my second column. After the execution, I select view: Confusion Matrix option from there I found the total accuracy is 82.25% and error is 17.75% and among the total 20000 predicted class of data, 16450 are correctly classified and 3550 are wrong classified. 
 
+
 **Confusion Matrix - Scorer**
 
 ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/713e2c1040fb2278a7aba65fc7397f359955c485/Screenshot4.png)
+
 
 
 ### 2. Power BI - Creating a Power BI dashboard by using IMDB_movie_dataset.csv
@@ -78,7 +80,9 @@ The most highlighting elements from the dashboard page- 1 are: average rating of
 Now, some notable factors of dashboard page -2 are: Average rating by genre in the pie chart indicates that, war genre movie has the highest average rating of 7,60 and the lowest average rating is horror genre movie with the rating of 6,29. The chart of top 20 actors based on the total number of movies highlights that, Christian Bale and Mark Wahlberg both have 11 movies and they are the top of the list. In the total movies by genre chart, I find an interesting fact that, drama genre movie has the highest number of 419 movies however, if we compare this genre by average rating, we can find the average rating of drama genre movie is 7,04 which is not even in the top five rating list. Lastly, I use a decomposition tree to show the total movies by directors and their casted actors, where the director Ridley Scott has directed 8 movies and he casted the actor Russell Crowe twice and director David Yates has directed 6 movies and his notable casted actors are Ruper Grint and Daniel Radcliffe, they both acted under David Yates four times. 
 
 
+
 ### 3. Python - Solve three seperate python tasks within PythonAnywhere by using both movies.csv file & MontyPythonAlbums.csv file.
+
 
 1. **Read the first ten movies from the movies.csv file and write them to a new csv file called yoursurname_output.csv, your output should only include the MovieID and Title, not genre. Advanced task - remove year from the title column and place it in a new column called year**:
 
@@ -102,6 +106,7 @@ output_data.to_csv(output_file, index=False)
 print("Task 1: Movie data has been processed and saved to Moyeen_output.csv.")
 
 ```
+
 
 2. **Read a file from the following online source -http://pythonscraping.com/files/MontyPythonAlbums.csv and append it to the end of your output file. Included in your output needs to be the actual date and time that your program ran to retrieve the data. Advanced task - Assign and include a movieid attribute in the output 
 which continues from where the previous data ended (i.e. movies.csv movieid 1-10)**:
@@ -136,6 +141,7 @@ combined_data.to_csv(output_file, index=False)
 print("Task 2: Monty Python album data has been appended and saved to Moyeen_output.csv.")
 
 ```
+
 
 3. **Prompt the user to enter a title for the output file and write this as the first line in your output file, to be followed by a blank line**:
 

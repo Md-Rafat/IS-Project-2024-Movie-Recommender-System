@@ -36,6 +36,12 @@ The above workflow consists of three major parts: data input and preprocessing, 
 
 As it can be seen in the Top K Selector node (Top 30 strongest rules) output data table after the execution that, the last three columns – Consequent, implies and items contain the rule itself. Items column contains an antecedent. The implies column indicates the direction. Consequent column contains the recommended genre. From the above figure we can see one rule where Mystery movie genre is the antecedent and Thriller genre is the consequent; the confidence is 0.712 which means about 71.2% user who watches Mystery genre will also be interested to watch Thriller genre movie. The information can be used to recommend the specific genre or type of movies to the future users. 
 
+- **Recommendation System Based on K Nearest Neighbors (KNN)**: K-Nearest Neighbors (KNN) is a simple, yet effective machine learning algorithm used for both classification and regression tasks. K-Nearest Neighbor is very easy to use, and it is very effective to apply in any recommender system.
+
+**Workflow Description**:
+
+  
+
 
 ### 2. Data Exploration & Cleaning
 

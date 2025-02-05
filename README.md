@@ -5,40 +5,28 @@
 **Project Title**: IS_Project_Movie_Recommender_System  
 
 IS project documentation is a major part of data analysis and visualization course offered by IMIS at South Westphalia University of applied science. We have been provided four movie datasets, and the project task is divided into three parts: 
-	Developing a movie recommender system using KNIME
-	Creating a Power BI dashboard based on KNIME solution or movie dataset
-	Introductory level python tasks
+ Developing a movie recommender system using KNIME
+ Creating a Power BI dashboard based on KNIME solution or movie dataset
+ Introductory and advanced level python tasks
 
 
 ## Objectives
 
-1. **Set up a retail sales database**: Create and populate a retail sales database with the provided sales data.
-2. **Data Cleaning**: Identify and remove any records with missing or null values.
-3. **Exploratory Data Analysis (EDA)**: Perform basic exploratory data analysis to understand the dataset.
-4. **Business Analysis**: Use SQL to answer specific business questions and derive insights from the sales data.
+1. **Developing movie recommender system in KNIME Analytics Platform**: Create movie recommender system by using different algorithms and methods in KNIME using the movies.csv & ratings.csv dataset.
+2. **Creating a Power BI dashboard**: Create a well organised Power BI dashboard by highlighting key aspects by using IMDB_movie_dataset.csv.
+3. **Introductory and advanced level python tasks**: Solve three seperate python tasks within PythonAnywhere by using both movies.csv file & MontyPythonAlbums.csv file.
+
+
 
 ## Project Structure
 
-### 1. Database Setup
+### 1. KNIME - Movie Recommender System
 
-- **Table Creation**: The project starts by creating a table named `Retail_Sales` to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.
+- **Recommendation System Based on Association Rule Learner**: An Association Rule Learner is a machine learning algorithm that is used to discover interesting relationships (associations) between variables in large datasets. It is also known as market basket analysis. One of the important applications of association rule learner is it recommends products, movies, songs etc. based to the user’s previous behavior or content. 
 
-```sql
-CREATE TABLE retail_sales
-(
-    transactions_id INT PRIMARY KEY,
-    sale_date DATE,	
-    sale_time TIME,
-    customer_id INT,	
-    gender VARCHAR(10),
-    age INT,
-    category VARCHAR(15),
-    quantity INT,
-    price_per_unit FLOAT,	
-    cogs FLOAT,
-    total_sale FLOAT
-);
-```
+
+
+
 
 ### 2. Data Exploration & Cleaning
 

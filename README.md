@@ -71,165 +71,38 @@ I created five measures in the formula bar by writing DAX formula, which are giv
 I use two separated pages to create the power BI dashboard with some key insights from the analysis. I highlighted all the measures which I have been created in the earlier steps in the dashboard. From where my notable findings are, total movies = 838, Avg rating of the movies = 6,81, Avg runtime = 114,64 minutes, Avg metascore = 59,58 and Avg votes = 193,23k
 
 ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/24b5950eef43a1765a40a603a26e989f77e05dcd/Screenshot5.png)
+![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/1424daca75aed6f1907364a42869842d9fdeef4a/Screenshot6.png)
 
 
+The most highlighting elements from the dashboard page- 1 are: average rating of top 50 movies in the basis of revenue – The dark knight has got the highest rating of 9. Inception holds the second place with the rating of 8,8. Then, in the total number of movies by year chart, it is notable that year 2016 had the highest number of movies of 198, 2015 had 109 and the lowest was in 2006 with only 41 movies. In the clustered column chart the title total number of movies by rating shows that, the maximum number of movie ratings fall in the range between 6 to 8 and the highest 43 movies hold the rating of 7. 
+Now, some notable factors of dashboard page -2 are: Average rating by genre in the pie chart indicates that, war genre movie has the highest average rating of 7,60 and the lowest average rating is horror genre movie with the rating of 6,29. The chart of top 20 actors based on the total number of movies highlights that, Christian Bale and Mark Wahlberg both have 11 movies and they are the top of the list. In the total movies by genre chart, I find an interesting fact that, drama genre movie has the highest number of 419 movies however, if we compare this genre by average rating, we can find the average rating of drama genre movie is 7,04 which is not even in the top five rating list. Lastly, I use a decomposition tree to show the total movies by directors and their casted actors, where the director Ridley Scott has directed 8 movies and he casted the actor Russell Crowe twice and director David Yates has directed 6 movies and his notable casted actors are Ruper Grint and Daniel Radcliffe, they both acted under David Yates four times. 
 
 
+### 3. Python - Solve three seperate python tasks within PythonAnywhere by using both movies.csv file & MontyPythonAlbums.csv file.
+
+```python
+          
+file_path = 'movies.csv'  # Replace with the actual path of your movies.csv file
+data = pd.read_csv(file_path)
 
 
+data['Year'] = data['title'].str.extract(r'\((\d{4})\)$')  # Extract the year from title
+data['title'] = data['title'].str[:-7]  # Remove the year from the title column using string slicing
 
-- **Record Count**: Determine the total number of records in the dataset.
-- **Customer Count**: Find out how many unique customers are in the dataset.
-- **Category Count**: Identify all unique product categories in the dataset.
-- **Null Value Check**: Check for any null values in the dataset and delete records with missing or null values.
+# Create a new DataFrame with MovieID, Title, and Year (First 10 Rows)
+output_data = data[['movieId', 'title', 'Year']][:10]  # Select only the first 10 rows
 
-```sql
-SELECT COUNT(*) FROM Retail_Sales;
-SELECT COUNT (transactions_id) AS total_sale FROM Retail_Sales;
-SELECT COUNT(DISTINCT customer_id) FROM Retail_Sales;
-SELECT DISTINCT category FROM Retail_Sales;
-
-SELECT * FROM Retail_Sales
-WHERE 
-    transactions_id IS NULL OR sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR quantity IS NULL OR
-    price_per_unit IS NULL OR cogs IS NULL OR total_sale IS NULL;
-
-DELETE FROM retail_sales
-WHERE 
-    transactions_id IS NULL OR sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR quantity IS NULL OR
-    price_per_unit IS NULL OR cogs IS NULL OR total_sale IS NULL;
-```
-
-### 3. Data Analysis & Findings
-
-The following SQL queries were developed to answer specific business questions:
-
-1. **Write a SQL query to retrieve all columns for sales made on '2022-11-05**:
-```sql
-SELECT *
-FROM Retail_Sales
-WHERE sale_date = '2022-11-05';
-```
-
-2. **Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
-```sql
-SELECT 
-  *
-FROM Retail_Sales
-WHERE 
-    category = 'Clothing'
-    AND 
-    TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
-    AND
-    quantity >= 4
-```
-
-3. **Write a SQL query to calculate the total sales (total_sale) and total number of orders for each category.**:
-```sql
-SELECT 
-    category,
-    SUM(total_sale) AS net_sale,
-    COUNT(transactions_id) AS total_orders
-FROM Retail_Sales
-GROUP BY category
-```
-
-4. **Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.**:
-```sql
-SELECT
-    ROUND(AVG(age), 2) as avg_age
-FROM Retail_Sales
-WHERE category = 'Beauty'
-```
-
-5. **Write a SQL query to find all transactions where the total_sale is greater than 1000.**:
-```sql
-SELECT * FROM Retail_Sales
-WHERE total_sale > 1000
-```
-
-6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
-```sql
-SELECT 
-    category,
-    gender,
-    COUNT(transactions_id) AS number_of_transactions
-FROM Retail_Sales
-GROUP BY 
-    category,
-    gender
-ORDER BY category, gender
+# Save the processed data to a new CSV file
+output_file = 'Moyeen_output.csv' # my output my name
+output_data.to_csv(output_file, index=False)
+print("Task 1: Movie data has been processed and saved to Moyeen_output.csv.")
 
 ```
 
-7. **Write a SQL query to calculate the average sale for each month. Find out best selling month in each year**:
-```sql
-SELECT 
-       year,
-       month,
-    avg_sale
-FROM 
-(    
-SELECT 
-    EXTRACT(YEAR FROM sale_date) AS year,
-    EXTRACT(MONTH FROM sale_date) AS month,
-    AVG(total_sale) AS avg_sale,
-    RANK() OVER(PARTITION BY EXTRACT(YEAR FROM sale_date) ORDER BY AVG(total_sale) DESC) as rank
-FROM Retail_Sales
-GROUP BY 1, 2
-) as table_1
-WHERE rank = 1
-```
 
-8. **Write a SQL query to find the top 5 customers based on the highest total sales **:
-```sql
-SELECT 
-    customer_id,
-    SUM(total_sale) AS total_sales
-FROM Retail_Sales
-GROUP BY 1
-ORDER BY 2 DESC
-LIMIT 5
-```
 
-9. **Write a SQL query to find the number of unique customers who purchased items from each category.**:
-```sql
-SELECT 
-    category,    
-    COUNT(DISTINCT customer_id) AS unique_customer
-FROM Retail_Sales
-GROUP BY category
-```
 
-10. **Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
-```sql
-WITH shift_sale
-AS
-(
-SELECT *,
-    CASE
-        WHEN EXTRACT(HOUR FROM sale_time) < 12 THEN 'Morning'
-        WHEN EXTRACT(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
-        ELSE 'Evening'
-    END AS shift
-FROM Retail_Sales
-)
-SELECT 
-    shift,
-    COUNT(transactions_id) AS Orders    
-FROM shift_sale
-GROUP BY shift
-```
 
-## Findings
-
-- **Customer Demographics**: The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.
-- **High-Value Transactions**: Several transactions had a total sale amount greater than 1000, indicating premium purchases.
-- **Sales Trends**: Monthly analysis shows variations in sales, helping identify peak seasons.
-- **Customer Insights**: The analysis identifies the top-spending customers and the most popular product categories.
-  
 
 ## Conclusion
 

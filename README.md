@@ -1,11 +1,14 @@
-# SQL Retail Sales Analysis Project -1
+# IS_Project_Movie_Recommender_System
 
 ## Project Overview
 
-**Project Title**: SQL Retail Sales Analysis Project -1   
-**Database**: `Sql_Project_1`
+**Project Title**: IS_Project_Movie_Recommender_System  
 
-This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. 
+IS project documentation is a major part of data analysis and visualization course offered by IMIS at South Westphalia University of applied science. We have been provided four movie datasets, and the project task is divided into three parts: 
+	Developing a movie recommender system using KNIME
+	Creating a Power BI dashboard based on KNIME solution or movie dataset
+	Introductory level python tasks
+
 
 ## Objectives
 

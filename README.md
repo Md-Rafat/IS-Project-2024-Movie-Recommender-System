@@ -70,6 +70,9 @@ I created five measures in the formula bar by writing DAX formula, which are giv
 **Dashboard Analysis**:
 I use two separated pages to create the power BI dashboard with some key insights from the analysis. I highlighted all the measures which I have been created in the earlier steps in the dashboard. From where my notable findings are, total movies = 838, Avg rating of the movies = 6,81, Avg runtime = 114,64 minutes, Avg metascore = 59,58 and Avg votes = 193,23k
 
+![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/24b5950eef43a1765a40a603a26e989f77e05dcd/Screenshot5.png)
+
+
 
 
 

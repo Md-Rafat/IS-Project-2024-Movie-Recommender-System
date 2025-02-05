@@ -55,19 +55,19 @@ The KNIME workflow between the recommendation system based on K Nearest Neighbor
 For my Power BI dashboard creation, I chose a different dataset which is named imdb_movie_dataset.csv. I downloaded the dataset from Kaggle.com. After that I do some transformation work and make few measures and finally create a dashboard with some highlighted insights from the dataset. 
 
 **Transformation Phase**:
-	I find the rating column data type is a whole number and the rating are a mixer of in a scale of 100 and 10. So at first, I change the data type from whole number to decimal number and apply a mathematical transformation using Power BI's built-in field calculations, use the divide by 10 options from the standard field.
-	I had to replace some values in the rating column from whole number to decimal number even after changing the data type
-	The genres and actors were more than one, most of the movies so I use split column and unpivot columns filter to split them based on the same movie rank
+1.	I find the rating column data type is a whole number and the rating are a mixer of in a scale of 100 and 10. So at first, I change the data type from whole number to decimal number and apply a mathematical transformation using Power BI's built-in field calculations, use the divide by 10 options from the standard field.
+2.	I had to replace some values in the rating column from whole number to decimal number even after changing the data type
+3.	The genres and actors were more than one, most of the movies so I use split column and unpivot columns filter to split them based on the same movie rank
 
 **Creating New Measures**:
 I created five measures in the formula bar by writing DAX formula, which are given below:
-	Avg Metascore = AVERAGE(imdb_movie_dataset[Metascore])
-	Avg Rating = AVERAGE(imdb_movie_dataset[Rating])
-	Avg Runtime = AVERAGE(imdb_movie_dataset[Runtime (Minutes)])
-	Avg Votes = AVERAGE(imdb_movie_dataset[Votes])
-	Total Movies = COUNT(imdb_movie_dataset[Rank])
+1.	Avg Metascore = AVERAGE(imdb_movie_dataset[Metascore])
+2.	Avg Rating = AVERAGE(imdb_movie_dataset[Rating])
+3.	Avg Runtime = AVERAGE(imdb_movie_dataset[Runtime (Minutes)])
+4.	Avg Votes = AVERAGE(imdb_movie_dataset[Votes])
+5.	Total Movies = COUNT(imdb_movie_dataset[Rank])
 
-**Dashboard Analysi**s:
+**Dashboard Analysis**:
 I use two separated pages to create the power BI dashboard with some key insights from the analysis. I highlighted all the measures which I have been created in the earlier steps in the dashboard. From where my notable findings are, total movies = 838, Avg rating of the movies = 6,81, Avg runtime = 114,64 minutes, Avg metascore = 59,58 and Avg votes = 193,23k
 
 

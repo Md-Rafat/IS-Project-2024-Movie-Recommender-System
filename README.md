@@ -5,16 +5,16 @@
 **Project Title**: IS_Project_Movie_Recommender_System  
 
 IS project documentation is a major part of data analysis and visualization course offered by IMIS at South Westphalia University of applied science. We have been provided four movie datasets, and the project task is divided into three parts: 
- Developing a movie recommender system using KNIME
- Creating a Power BI dashboard based on KNIME solution or movie dataset
- Introductory and advanced level python tasks
+1. Developing a movie recommender system using KNIME
+2. Creating a Power BI dashboard based on KNIME solution or movie dataset
+3. Introductory and advanced level python tasks
 
 
 ## Objectives
 
 1. **Developing movie recommender system in KNIME Analytics Platform**: Create movie recommender system by using different algorithms and methods in KNIME using the movies.csv & ratings.csv dataset.
-2. **Creating a Power BI dashboard**: Create a well organised Power BI dashboard by highlighting key aspects by using IMDB_movie_dataset.csv.
-3. **Introductory and advanced level python tasks**: Solve three seperate python tasks within PythonAnywhere by using both movies.csv file & MontyPythonAlbums.csv file.
+2. **Creating a Power BI dashboard**: Develop an interactive Power BI dashboard to analyse key insights from the IMDb movie dataset.
+3. **Introductory and advanced level python tasks**: Solve introductory and advanced Python tasks on PythonAnywhere, by using both movies.csv file & MontyPythonAlbums.csv file.
 
 
 

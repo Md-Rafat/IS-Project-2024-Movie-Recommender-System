@@ -20,7 +20,7 @@ IS project documentation is a major part of data analysis and visualization cour
 
 ## Project Structure
 
-### 1. KNIME - Movie Recommender System
+### 1. KNIME - Developing a Movie Recommender System in KNIME Analytics Platform
 
 - **Recommendation System Based on Association Rule Learner**: An Association Rule Learner is a machine learning algorithm that is used to discover interesting relationships (associations) between variables in large datasets. It is also known as market basket analysis. One of the important applications of association rule learner is it recommends products, movies, songs etc. based to the user’s previous behavior or content. 
 

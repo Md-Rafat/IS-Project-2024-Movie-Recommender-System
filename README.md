@@ -24,7 +24,6 @@ IS project documentation is a major part of data analysis and visualization cour
 
 - **Recommendation System Based on Association Rule Learner**: An Association Rule Learner is a machine learning algorithm that is used to discover interesting relationships (associations) between variables in large datasets. It is also known as market basket analysis. One of the important applications of association rule learner is it recommends products, movies, songs etc. based to the user’s previous behavior or content. 
 
- ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/2bb911b716cf1de1a58e5ffaab887baf67b3f09d/Capture2.PNG)
 
 
 

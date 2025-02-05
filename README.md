@@ -25,11 +25,13 @@ IS project documentation is a major part of data analysis and visualization cour
 - **Recommendation System Based on Association Rule Learner**: An Association Rule Learner is a machine learning algorithm that is used to discover interesting relationships (associations) between variables in large datasets. It is also known as market basket analysis. One of the important applications of association rule learner is it recommends products, movies, songs etc. based to the user’s previous behavior or content.
 
 **Workflow Description**:
+
  ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/67cbc06064e5f9f8ac4d1c67a3769624848673d3/Screenshot1.png)
 
 The above workflow consists of three major parts: data input and preprocessing, transformation and output which will be shown by another picture later. Here in the workflow, it is shown that I use two datasets (movies and ratings) based on the significance of the columns. In the first layer of the workflow my objective is to create a separate column for the year by extracting the year from the title column of the dataset. So, after loading the movies.csv into CSV Reader, I use string manipulation node and Excel Writer node to extract the number (year). Then, I load the extracted year data into Excel Reader and assign a new CSV Reader node for my second dataset which is ratings.csv. In the second layer, with the help of Row Filter I clean the dataset by removing some irrelevant or unwanted rows based on row id, because I find some rows containing title in the year column as well as a range of numeric values. In the third layer, I inner joined both the extracted movies.csv node and rating.csv node with the help of Joiner node while the Join column is movie id. After that, for the missing value, if there is any, I use Missing Value node, and the Missing Value node is connected to the Column Filter node to ensure cleaned data is processed further. Column Filter node removes unnecessary columns such as timestamp, imdbId etc. to focus on relevant data. Then, in Cell Splitter I select genres column to split and for resorting the column I use Column Resorter node. Then, I introduce Association Rule Learner node, there my transactions column is genres split, Min support = 0.01 and Min confidence = 0.01. once the Association Rule Learner node is executed, it outputs the Association Rules in a data table. These association rules are considered frequent and strong according to the support and confidence that I specified. Finally, I filter only the top 30 strongest rules-based confidence and support using the Top K Selector node. 
 
 **Results and Outputs**:
+
 ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/2daadfe8cae2567779355b6427de9c237f5a179d/Screenshot2.png)
 
 As it can be seen in the Top K Selector node (Top 30 strongest rules) output data table after the execution that, the last three columns – Consequent, implies and items contain the rule itself. Items column contains an antecedent. The implies column indicates the direction. Consequent column contains the recommended genre. From the above figure we can see one rule where Mystery movie genre is the antecedent and Thriller genre is the consequent; the confidence is 0.712 which means about 71.2% user who watches Mystery genre will also be interested to watch Thriller genre movie. The information can be used to recommend the specific genre or type of movies to the future users. 
@@ -38,15 +40,40 @@ As it can be seen in the Top K Selector node (Top 30 strongest rules) output dat
 - **Recommendation System Based on K Nearest Neighbors (KNN)**: K-Nearest Neighbors (KNN) is a simple, yet effective machine learning algorithm used for both classification and regression tasks. K-Nearest Neighbor is very easy to use, and it is very effective to apply in any recommender system.
 
 **Workflow Description**:
+
 ![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/d221758d628af3ce77e7c590e654687517056922/Screenshot3.png)
 
 The KNIME workflow between the recommendation system based on K Nearest Neighbors (KNN) and the recommendation system based on Association Rule Learner has some similarities. I use the same dataset in the K Nearest Neighbor workflow and use the same year extraction technique as well as some Row Filter to remove the unwanted rows. Then, after using Joiner node and Missing Value node this time I use String to Number node to change the data type of the ‘Year’ column. Then I use Rule Engine node to specify some rules based on rating. In the Rule Engine node, I specify two rules with the help of given functions there. The rules are Ratings 0 - 2.5 = not recommended and Ratings 3 - 5 = recommended. In the Rule Engine node, I append the column Recommendation. I use Column Filter here as well to remove unnecessary columns like timestamp, imdbId etc. After that, I use Partitioning node to divide my data into training data and test data. I choose the size of my first partition or training data 80% and second partition or test data 20% and select Random sampling. Then, I drag K Nearest Neighbor node and connect it with the partitioning node. In the K Nearest Neighbor node, I select my class column = Recommendation, Number of neighbors = 25 and marked Weight neighbours by distance. In the last layer of my workflow I drag a new Joiner node and join the classified output data of K Nearest Neighbor node and Excel Reader node of movies.csv (with extracted year), the purpose of using this Joiner node is to bring the title column back in the output data table for better understanding of the recommendation system which I removed previously in the Column Filter node because using non numeric column in the K Nearest Neighbor is not possible. In addition, I use Column Filter and Column Resorter accordingly to remove unnecessary columns and resorting the columns. Finally, I use a Scorer node to determine the accuracy status, correct classified data or wrong classified data. In the configuration of Scorer node, I select Recommendation column as my first column and Class [KNN] column as my second column. After the execution, I select view: Confusion Matrix option from there I found the total accuracy is 82.25% and error is 17.75% and among the total 20000 predicted class of data, 16450 are correctly classified and 3550 are wrong classified. 
 
 **Confusion Matrix - Scorer**
 
+![Image Alt](https://github.com/Md-Rafat/IS_Project_Movie_Recommender_System/blob/713e2c1040fb2278a7aba65fc7397f359955c485/Screenshot4.png)
 
 
-### 2. Data Exploration & Cleaning
+### 2. Power BI - Creating a Power BI dashboard by using IMDB_movie_dataset.csv
+
+For my Power BI dashboard creation, I chose a different dataset which is named imdb_movie_dataset.csv. I downloaded the dataset from Kaggle.com. After that I do some transformation work and make few measures and finally create a dashboard with some highlighted insights from the dataset. 
+
+**Transformation Phase**:
+	I find the rating column data type is a whole number and the rating are a mixer of in a scale of 100 and 10. So at first, I change the data type from whole number to decimal number and apply a mathematical transformation using Power BI's built-in field calculations, use the divide by 10 options from the standard field.
+	I had to replace some values in the rating column from whole number to decimal number even after changing the data type
+	The genres and actors were more than one, most of the movies so I use split column and unpivot columns filter to split them based on the same movie rank
+
+**Creating New Measures**:
+I created five measures in the formula bar by writing DAX formula, which are given below:
+	Avg Metascore = AVERAGE(imdb_movie_dataset[Metascore])
+	Avg Rating = AVERAGE(imdb_movie_dataset[Rating])
+	Avg Runtime = AVERAGE(imdb_movie_dataset[Runtime (Minutes)])
+	Avg Votes = AVERAGE(imdb_movie_dataset[Votes])
+	Total Movies = COUNT(imdb_movie_dataset[Rank])
+
+**Dashboard Analysi**s:
+I use two separated pages to create the power BI dashboard with some key insights from the analysis. I highlighted all the measures which I have been created in the earlier steps in the dashboard. From where my notable findings are, total movies = 838, Avg rating of the movies = 6,81, Avg runtime = 114,64 minutes, Avg metascore = 59,58 and Avg votes = 193,23k
+
+
+
+
+
 
 - **Record Count**: Determine the total number of records in the dataset.
 - **Customer Count**: Find out how many unique customers are in the dataset.
